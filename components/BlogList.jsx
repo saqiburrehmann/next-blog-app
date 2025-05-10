@@ -35,14 +35,14 @@ const BlogList = () => {
           Startup
         </button>
         <button
-          onClick={() => setMenu("LifeStyle")}
+          onClick={() => setMenu("Lifestyle")}
           className={
-            menu === "LifeStyle"
+            menu === "Lifestyle"
               ? "bg-black text-white py-1 px-4 rounded-sm"
               : ""
           }
         >
-          LifeStyle
+          Lifestyle
         </button>
       </div>
 

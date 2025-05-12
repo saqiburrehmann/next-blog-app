@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/config/db.js";
-import { createBlog, getBlog } from "@/lib/controllers/blogController.js";
+import {
+  createBlog,
+  getBlog,
+} from "../../../lib/controllers/blogController.js";
 
 //  Getting all blogs
 export async function GET(request) {

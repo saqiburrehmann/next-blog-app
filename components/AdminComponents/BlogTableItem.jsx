@@ -1,8 +1,29 @@
 import { assets } from "@/Assets/assets";
+import axios from "axios";
 import Image from "next/image";
 import React from "react";
+import { toast } from "react-toastify"; // Import toast for notifications
 
-const BlogTableItem = ({ authorImg, title, author, date = "13 May 2025" }) => {
+const BlogTableItem = ({
+  id,
+  authorImg,
+  title,
+  author,
+  date = "13 May 2025",
+  onDelete,
+}) => {
+  const handleDelete = async () => {
+    try {
+      const res = await axios.delete(`/api/blog/${id}`);
+      // Successfully deleted
+      if (onDelete) onDelete(id); // Inform parent if needed
+      toast.success("Blog deleted successfully!"); // Show success toast
+    } catch (err) {
+      console.error("Failed to delete:", err);
+      toast.error("Failed to delete blog."); // Show error toast
+    }
+  };
+
   const formatDate = (isoString) => {
     const date = new Date(isoString);
     return new Intl.DateTimeFormat("en-GB", {
@@ -31,7 +52,10 @@ const BlogTableItem = ({ authorImg, title, author, date = "13 May 2025" }) => {
       <td className="px-6 py-4">{title || "Untitled Blog"}</td>
       <td className="px-6 py-4">{date ? formatDate(date) : "No Date"}</td>
       <td className="px-6 py-4">
-        <button className="text-red-600 hover:underline cursor-pointer">
+        <button
+          onClick={handleDelete}
+          className="text-red-600 hover:underline cursor-pointer"
+        >
           Delete
         </button>
       </td>

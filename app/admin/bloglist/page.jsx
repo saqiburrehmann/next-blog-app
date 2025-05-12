@@ -3,6 +3,8 @@
 import BlogTableItem from "@/components/AdminComponents/BlogTableItem";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // Import toast CSS
 
 const Page = () => {
   const [blogs, setBlogs] = useState([]);
@@ -22,6 +24,12 @@ const Page = () => {
   useEffect(() => {
     fetchBlog();
   }, []);
+
+  // Delete blog from the local state
+  const handleDelete = (id) => {
+    setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog._id !== id));
+    toast.success("Blog deleted successfully!"); // Show success toast
+  };
 
   if (loading) {
     return <div>Loading...</div>;
@@ -45,11 +53,12 @@ const Page = () => {
             {blogs.map((item, index) => (
               <BlogTableItem
                 key={index}
-                mongoId={item._id}
+                id={item._id}
                 title={item.title}
                 author={item.author}
                 authorImg={item.authorImg}
                 date={item.date}
+                onDelete={handleDelete} // Pass onDelete handler to child
               />
             ))}
           </tbody>

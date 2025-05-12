@@ -1,9 +1,25 @@
-import { blog_data } from "@/Assets/assets";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BlogItem from "./BlogItem";
+import axios from "axios";
 
 const BlogList = () => {
   const [menu, setMenu] = useState("All");
+
+  const [blogs, setBlogs] = useState([]);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("/api/blog");
+      setBlogs(response.data.blog);
+      console.log("Response Data", response.data.blog);
+    } catch (error) {
+      console.error("Failed to fetch blogs:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div>
@@ -17,9 +33,9 @@ const BlogList = () => {
           All
         </button>
         <button
-          onClick={() => setMenu("Technology")}
+          onClick={() => setMenu("technology")}
           className={
-            menu === "Technology"
+            menu === "technology"
               ? "bg-black text-white py-1 px-4 rounded-sm"
               : ""
           }
@@ -27,17 +43,17 @@ const BlogList = () => {
           Technology
         </button>
         <button
-          onClick={() => setMenu("Startup")}
+          onClick={() => setMenu("startup")}
           className={
-            menu === "Startup" ? "bg-black text-white py-1 px-4 rounded-sm" : ""
+            menu === "startup" ? "bg-black text-white py-1 px-4 rounded-sm" : ""
           }
         >
           Startup
         </button>
         <button
-          onClick={() => setMenu("Lifestyle")}
+          onClick={() => setMenu("lifestyle")}
           className={
-            menu === "Lifestyle"
+            menu === "lifestyle"
               ? "bg-black text-white py-1 px-4 rounded-sm"
               : ""
           }
@@ -47,12 +63,12 @@ const BlogList = () => {
       </div>
 
       <div className="flex flex-wrap justify-around gap-1 gap-y-10 mb-16 xl:mx-24">
-        {blog_data
+        {blogs
           .filter((item) => (menu === "All" ? true : item.category === menu))
           .map((item, index) => (
             <BlogItem
               key={index}
-              id={item.id}
+              id={item._id}
               image={item.image}
               title={item.title}
               description={item.description}

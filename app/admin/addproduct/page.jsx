@@ -4,8 +4,11 @@ import axios from "axios";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 const Page = () => {
+  const router = useRouter();
+
   const [image, setImage] = useState(null);
   const [authorImgFile, setAuthorImgFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
@@ -19,8 +22,7 @@ const Page = () => {
   });
 
   const onChangeHandler = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
+    const { name, value } = e.target;
     setData((prevData) => ({ ...prevData, [name]: value }));
   };
 
@@ -44,6 +46,19 @@ const Page = () => {
       const response = await axios.post("/api/blog", formData);
       if (response.data.success) {
         toast.success(response.data.msg);
+
+        // ✅ Reset form fields
+        setData({
+          title: "",
+          description: "",
+          category: "startup",
+          author: "Alex",
+        });
+        setImage(null);
+        setAuthorImgFile(null);
+
+        // ✅ Refresh the page to re-fetch data
+        router.refresh();
       } else {
         toast.error("Error from server");
       }
@@ -53,7 +68,7 @@ const Page = () => {
     }
   };
 
-  // Preview for main image
+  // Main image preview
   useEffect(() => {
     if (!image) {
       setPreviewUrl(null);
@@ -64,7 +79,7 @@ const Page = () => {
     return () => URL.revokeObjectURL(objectUrl);
   }, [image]);
 
-  // Preview for author image
+  // Author image preview
   useEffect(() => {
     if (!authorImgFile) {
       setAuthorPreview(null);
@@ -104,7 +119,7 @@ const Page = () => {
           width={140}
           height={140}
           alt="Upload Author"
-          className="cursor-pointer object-cover "
+          className="cursor-pointer object-cover"
         />
       </label>
       <input

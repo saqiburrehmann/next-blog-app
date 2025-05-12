@@ -1,10 +1,14 @@
 import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/config/db.js";
-import createBlog from "@/lib/controllers/blogController";
+import { createBlog, getBlog } from "@/lib/controllers/blogController.js";
 
+//  Getting all blogs
 export async function GET(request) {
   await connectDB();
-  return NextResponse.json({ msg: "API working" });
+
+  const blogResult = await getBlog(request);
+
+  return NextResponse.json({ msg: "API working", ...blogResult });
 }
 
 // create blog

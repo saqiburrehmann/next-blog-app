@@ -4,8 +4,8 @@ import axios from "axios";
 
 const BlogList = () => {
   const [menu, setMenu] = useState("All");
-
   const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(true); // ✅ loading state
 
   const fetchData = async () => {
     try {
@@ -14,12 +14,22 @@ const BlogList = () => {
       console.log("Response Data", response.data.blog);
     } catch (error) {
       console.error("Failed to fetch blogs:", error);
+    } finally {
+      setLoading(false); // ✅ done loading
     }
   };
 
   useEffect(() => {
     fetchData();
   }, []);
+
+  if (loading) {
+    return (
+      <div className="text-center py-20 text-lg font-medium">
+        Loading blogs...
+      </div>
+    );
+  }
 
   return (
     <div>

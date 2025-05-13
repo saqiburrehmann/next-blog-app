@@ -27,5 +27,7 @@ const SubScriptionTableItem = ({ email, date, id, onDelete }) => {
         Delete
       </td>
     </tr>
+
+    
   );
 };

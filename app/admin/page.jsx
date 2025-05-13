@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const page = () => {
-  return (
-    <div>Hello</div>
-  )
-}
+  return <div>Admin Pannel</div>;
+};
 
-export default page
+export default page;

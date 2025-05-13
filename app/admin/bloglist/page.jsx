@@ -4,7 +4,6 @@ import BlogTableItem from "@/components/AdminComponents/BlogTableItem";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // Import toast CSS
 
 const Page = () => {
   const [blogs, setBlogs] = useState([]);
@@ -28,7 +27,7 @@ const Page = () => {
   // Delete blog from the local state
   const handleDelete = (id) => {
     setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog._id !== id));
-    toast.success("Blog deleted successfully!"); // Show success toast
+    toast.success("Blog deleted successfully!"); 
   };
 
   if (loading) {
@@ -58,7 +57,7 @@ const Page = () => {
                 author={item.author}
                 authorImg={item.authorImg}
                 date={item.date}
-                onDelete={handleDelete} // Pass onDelete handler to child
+                onDelete={handleDelete} 
               />
             ))}
           </tbody>

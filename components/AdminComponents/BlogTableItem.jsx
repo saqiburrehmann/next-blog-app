@@ -17,7 +17,7 @@ const BlogTableItem = ({
       const res = await axios.delete(`/api/blog/${id}`);
       // Successfully deleted
       if (onDelete) onDelete(id); // Inform parent if needed
-      toast.success("Blog deleted successfully!"); // Show success toast
+      // toast.success("Blog deleted successfully!"); // Show success toast
     } catch (err) {
       console.error("Failed to delete:", err);
       toast.error("Failed to delete blog."); // Show error toast

@@ -76,44 +76,13 @@ const Page = () => {
           alt="blog main"
         />
         <h1 className="my-8 text-[26px] font-semibold">Introduction</h1>
-        <p>{data.description}</p>
+        <p>{data.title}</p>
+
 
         {/* Steps... */}
-        <h3 className="my-5 text-[20px] font-semibold">
-          Step 1: Self-Reflection and Goal Setting
-        </h3>
-        <p className="my-3">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat est
-          enim optio ipsam error harum ut?
-        </p>
-        <p className="my-3">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat est
-          enim optio ipsam error harum ut?
-        </p>
+        <h3 className="my-5 text-[20px] font-semibold">Description</h3>
+        <div className="blog-content" dangerouslySetInnerHTML={{ __html: data.description }}></div>
 
-        <h3 className="my-5 text-[20px] font-semibold">
-          Step 2: Skill Development
-        </h3>
-        <p className="my-3">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat est
-          enim optio ipsam error harum ut?
-        </p>
-
-        <h3 className="my-5 text-[20px] font-semibold">
-          Step 3: Build Your Portfolio
-        </h3>
-        <p className="my-3">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat est
-          enim optio ipsam error harum ut?
-        </p>
-
-        <h3 className="my-5 text-[20px] font-semibold">Conclusion</h3>
-        <p className="my-3">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat est
-          enim optio ipsam error harum ut? Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Quaerat est enim optio ipsam error harum
-          ut?
-        </p>
 
         <div className="my-24">
           <p className="text-black font-semibold my-4">

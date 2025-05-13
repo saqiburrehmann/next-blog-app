@@ -2,7 +2,9 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import SubScriptionTableItem from "@/components/AdminComponents/SubScriptionTableItem";
+// ✅ Correct (matches filename exactly)
+import SubScriptionTableItem from '@/components/AdminComponents/SubscriptionTableItem';
+
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

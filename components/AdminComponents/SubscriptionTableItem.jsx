@@ -9,7 +9,7 @@ const SubScriptionTableItem = ({ email, date, id, onDelete }) => {
   };
 
   const handleDelete = () => {
-    onDelete(id);  // Pass the email id to onDelete
+    onDelete(id); // Pass the email id to onDelete
   };
 
   return (
@@ -22,12 +22,12 @@ const SubScriptionTableItem = ({ email, date, id, onDelete }) => {
       </td>
       <td
         className="px-6 py-4 cursor-pointer underline text-red-600"
-        onClick={handleDelete}  // Use the new handler here
+        onClick={handleDelete} // Use the new handler here
       >
         Delete
       </td>
     </tr>
-
-    
   );
 };
+
+export default SubScriptionTableItem;

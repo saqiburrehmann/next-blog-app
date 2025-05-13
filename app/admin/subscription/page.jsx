@@ -2,8 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-// ✅ Correct (matches filename exactly)
-import SubScriptionTableItem from '@/components/AdminComponents/SubscriptionTableItem';
+import SubScriptionTableItem from "@/components/AdminComponents/SubscriptionTableItem.jsx";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -91,7 +90,7 @@ const Page = () => {
       </div>
 
       {/* Toast notifications container */}
-      <ToastContainer theme="dark"/>
+      <ToastContainer theme="dark" />
     </div>
   );
 };
